@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom";
-import {UserOutlined} from "@ant-design/icons"
+import {UserOutlined} from "@ant-design/icons";
 import axios from "axios";
 export default function Navbar() {
   const navigate=useNavigate();

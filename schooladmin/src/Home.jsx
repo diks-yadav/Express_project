@@ -6,7 +6,7 @@ export default function Home() {
   const getSpecificUserDetails=()=>{
     axios.get(`http://localhost:9090/api/get-usersbyemail/${email}`).then((res)=>{
       console.log('Backend response Success:', res);
-      if(res.data.status==1){
+      if(res.data.status===1){
         console.log("user details",res.data.users.firstname);
         setName(res.data.users.firstname + " " +res.data.users.lastname);
         // setName(res.data.data.name);        

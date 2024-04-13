@@ -6,6 +6,11 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import Login from './pages/Login';
 import Attendance from './pages/Attendance';
 import Home from './Home';
+import Test from './pages/Test';
+import StudyMaterial from './pages/StudyMaterial';
+import FacultyFeddback from './pages/FacultyFeddback';
+import StudentDocumentation from './pages/StudentDocumentation';
+import NoPage from './pages/NoPage';
 
 function App() {
   return (
@@ -17,10 +22,14 @@ function App() {
     <Route path="/dashboard" element={<Dashboard/>}>
     <Route index element={<Home/>}/>
     <Route path="student" element={<Attendance/>}/>
-    <Route path="*" element={<Home/>}/>
+    <Route path="student-test" element={<Test/>}/>
+    <Route path="study-material" element={<StudyMaterial/>}/>
+    <Route path="faculty-feedback" element={<FacultyFeddback/>}/>
+    <Route path="student-documentation" element={<StudentDocumentation/>}/>
+
+    <Route path="*" element={<NoPage/>}/>
 
     {/* student-attendance */}
-    
     </Route>
     <Route path="/" element={<Login/>}></Route>
 
