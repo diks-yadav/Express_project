@@ -1,36 +1,62 @@
-import React, {useState, useEffect } from "react";
-import {useNavigate} from "react-router-dom";
-import {UserOutlined} from "@ant-design/icons";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserOutlined, DownOutlined } from "@ant-design/icons";
 import axios from "axios";
+import { Menu } from "antd";
+import { imageContext } from "./pages/ImageContext";
+// import { ImageData } from "./Profile";
+// import { ImageContext } from "./context/ImageContext.js";
+// import { imageContext } from "./context/ImageContext";
+// import { imageContext } from "./Profile";
 export default function Navbar() {
-  const navigate=useNavigate();
-  const [name,setName]=useState();
-  const email=localStorage.getItem("email");
-  console.log("email",email);
-  const handleLogout=() => {
+  const {imageValue,setImageValue}=useContext(imageContext);
+  const navigate = useNavigate();
+  const [name, setName] = useState();
+  const email = localStorage.getItem("email");
+  console.log("email", email);
+  const handleLogout = () => {
     localStorage.removeItem("email");
     // window.location.reload();
     navigate("/");
-  }
+  };
 
-  const getSpecificUserDetails=()=>{
-    axios.get(`http://localhost:9090/api/get-usersbyemail/${email}`).then((res)=>{
-      console.log('Backend response Success:', res);
-      if(res.data.status==1){
-        console.log("user details",res.data.users.firstname);
-        setName(res.data.users.firstname+res.data.users.lastname);
-        // setName(res.data.data.name);        
-      }
-      else{
-          alert(`${res.data.message}`)
-      }
-    }).catch((err) => {
-      console.log('Backend response failes:', err.message);
-    });
-  }
-useEffect(()=>{
-getSpecificUserDetails();
-},[email]);
+  const getSpecificUserDetails = () => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/get-usersbyemail/${email}`)
+      .then((res) => {
+        console.log("Backend response Success:", res);
+        if (res.data.status == 1) {
+          console.log("user details", res.data.users.firstname);
+          setName(res.data.users.firstname + res.data.users.lastname);
+          // setName(res.data.data.name);
+        } else {
+          alert(`${res.data.message}`);
+        }
+      })
+      .catch((err) => {
+        console.log("Backend response failes:", err.message);
+      });
+  };
+  const items = [
+    {
+      label: "",
+      key: "SubMenu",
+      // icon: <DownOutlined />,
+      children: [
+        {
+          label: <Link to="myprofile">My Profile</Link>,
+          key: "setting:1",
+        },
+        {
+          label: "My Notifications",
+          key: "setting:2",
+        },
+      ],
+    },
+  ];
+  useEffect(() => {
+    getSpecificUserDetails();
+  }, [email]);
 
   return (
     <div>
@@ -50,7 +76,7 @@ getSpecificUserDetails();
           >
             <i className="mdi mdi-menu"></i>
           </button>
-          <ul className="navbar-nav">
+          {/* <ul className="navbar-nav">
             <li className="nav-item dropdown">
               <a
                 className="nav-link count-indicator dropdown-toggle"
@@ -203,9 +229,8 @@ getSpecificUserDetails();
                 </div>
               </form>
             </li>
-          </ul>
+          </ul> */}
           <ul className="navbar-nav navbar-nav-right ml-lg-auto">
-        
             <li className="nav-item nav-profile dropdown border-0">
               {/* <a
                 className="nav-link dropdown-toggle text-white"
@@ -213,14 +238,38 @@ getSpecificUserDetails();
                 href="#"
                 data-toggle="dropdown"
               > */}
-                {/* <img
+              {/* <img
                   className="nav-profile-img mr-2"
                   alt=""
                   src="/assets/images/faces/face1.jpg"
                 /> */}
-                <div className="bg-white m-2" style={{height:"40px",cursor:"pointer", width:"40px", borderRadius:"50%", padding:"3px"}}><UserOutlined className="p-2"/>
-                </div>
-                <span className="text-white">{email}</span>
+              {imageValue? <img
+            src={`REACT_APP_BACKEND_URL/profile/${imageValue}`}
+            width={50}
+            height={50}
+            style={{ borderRadius: "50%", margin: "5px" }}
+          ></img>:<div
+                className="bg-white m-2"
+                style={{
+                  height: "40px",
+                  cursor: "pointer",
+                  width: "40px",
+                  borderRadius: "50%",
+                  padding: "3px",
+                }}
+              >
+                <UserOutlined className="p-2" />
+              </div>}
+              <span className="text-white">
+                {email}
+                {/* <DownOutlined onClick={handleMenu} /> */}
+              </span>
+              <Menu
+                // onClick={onClick}
+                // selectedKeys={[current]}
+                // mode="horizontal"
+                items={items}
+              />
               {/* </a> */}
               <div
                 className="dropdown-menu navbar-dropdown w-100"
@@ -246,7 +295,7 @@ getSpecificUserDetails();
                 onClick={handleLogout}
               >
                 {/* <i className="mdi mdi-earth"></i> */}
-                 Log Out{" "}
+                Log Out{" "}
               </button>
               {/* <div
                 className="dropdown-menu navbar-dropdown"

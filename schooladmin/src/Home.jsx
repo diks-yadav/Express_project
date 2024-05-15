@@ -4,7 +4,7 @@ export default function Home() {
   const [name,setName] =useState("");
   const email=localStorage.getItem('email');
   const getSpecificUserDetails=()=>{
-    axios.get(`http://localhost:9090/api/get-usersbyemail/${email}`).then((res)=>{
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/get-usersbyemail/${email}`).then((res)=>{
       console.log('Backend response Success:', res);
       if(res.data.status===1){
         console.log("user details",res.data.users.firstname);
@@ -22,18 +22,18 @@ useEffect(()=>{
 getSpecificUserDetails();
 },[email]);
   return (
-    <div className="main-panel">
+    <div className="main-panel" style={{width:"950px"}}>
     <div className="content-wrapper contentClass pb-0">
       <div className="page-header flex-wrap">
         <h3 className="mb-0"> Hi, welcome back! <span className="pl-0 h6 pl-sm-2 text-muted d-inline-block capitalize">{name}</span>
         </h3>
-        <div className="d-flex">
+        {/* <div className="d-flex">
           <button type="button" className="btn btn-sm bg-white btn-icon-text border">
-            <i className="mdi mdi-email btn-icon-prepend"></i> Email </button>
+            <i className="mdi mdi-email btn-icon-prepend"></i> Email</button>
           <button type="button" className="btn btn-sm bg-white btn-icon-text border ml-3">
             <i className="mdi mdi-printer btn-icon-prepend"></i> Print </button>
           <button type="button" className="btn btn-sm ml-3 btn-success"> Add User </button>
-        </div>
+        </div> */}
       </div>
       <div className="row">
         <div className="col-xl-3 col-lg-12 stretch-card grid-margin">
@@ -181,7 +181,7 @@ getSpecificUserDetails();
           </div>
         </div>
       </div>
-      <div className="row">
+      {/* <div className="row">
         <div className="col-xl-8 col-sm-6 grid-margin stretch-card">
           <div className="card">
             <div className="card-body px-0 overflow-auto">
@@ -319,8 +319,8 @@ getSpecificUserDetails();
             </div>
           </div>
         </div>
-      </div>
-      <div className="row">
+      </div> */}
+      {/* <div className="row">
         <div className="col-xl-4 grid-margin stretch-card">
           <div className="card">
             <div className="card-body">
@@ -490,336 +490,8 @@ getSpecificUserDetails();
             </div>
           </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-xl-8 grid-margin stretch-card">
-          <div className="card card-calender">
-            <div className="card-body">
-              <div className="row pt-4">
-                <div className="col-sm-6">
-                  <h1 className="text-white">10:16PM</h1>
-                  <h5 className="text-white">Monday 25 October, 2016</h5>
-                  <h5 className="text-white pt-2 m-0">Precipitation:50%</h5>
-                  <h5 className="text-white m-0">Humidity:23%</h5>
-                  <h5 className="text-white m-0">Wind:13 km/h</h5>
-                </div>
-                <div className="col-sm-6 text-sm-right pt-3 pt-sm-0">
-                  <h3 className="text-white">Clear Sky</h3>
-                  <p className="text-white m-0">London, UK</p>
-                  <h3 className="text-white m-0">21°C</h3>
-                </div>
-              </div>
-              <div className="row mt-5">
-                <div className="col-sm-12">
-                  <ul className="d-flex pl-0 overflow-auto">
-                    <li className="weakly-weather-item text-white font-weight-medium text-center active">
-                      <p className="mb-0">TODAY</p>
-                      <i className="mdi mdi-weather-cloudy"></i>
-                      <p className="mb-0">21<span className="symbol">°c</span></p>
-                    </li>
-                    <li className="weakly-weather-item text-white font-weight-medium text-center">
-                      <p className="mb-0">MON</p>
-                      <i className="mdi mdi-weather-hail"></i>
-                      <p className="mb-0">21<span className="symbol">°c</span></p>
-                    </li>
-                    <li className="weakly-weather-item text-white font-weight-medium text-center">
-                      <p className="mb-0">TUE</p>
-                      <i className="mdi mdi-weather-cloudy"></i>
-                      <p className="mb-0">21<span className="symbol">°c</span></p>
-                    </li>
-                    <li className="weakly-weather-item text-white font-weight-medium text-center">
-                      <p className="mb-0">WED</p>
-                      <i className="mdi mdi-weather-fog"></i>
-                      <p className="mb-0">21<span className="symbol">°c</span></p>
-                    </li>
-                    <li className="weakly-weather-item text-white font-weight-medium text-center">
-                      <p className="mb-0">THU</p>
-                      <i className="mdi mdi-weather-hail"></i>
-                      <p className="mb-0">21<span className="symbol">°c</span></p>
-                    </li>
-                    <li className="weakly-weather-item text-white font-weight-medium text-center">
-                      <p className="mb-0">FRI</p>
-                      <i className="mdi mdi-weather-cloudy"></i>
-                      <p className="mb-0">21<span className="symbol">°c</span></p>
-                    </li>
-                    <li className="weakly-weather-item text-white font-weight-medium text-center">
-                      <p className="mb-0">SAT</p>
-                      <i className="mdi mdi-weather-hail"></i>
-                      <p className="mb-0">21<span className="symbol">°c</span></p>
-                    </li>
-                    <li className="weakly-weather-item text-white font-weight-medium text-center">
-                      <p className="mb-0">SUN</p>
-                      <i className="mdi mdi-weather-cloudy"></i>
-                      <p className="mb-0">21<span className="symbol">°c</span></p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-4 grid-margin stretch-card">
-          {/* <!--activity--> */}
-          <div className="card">
-            <div className="card-body">
-              <h4 className="card-title">
-                <span className="d-flex justify-content-between">
-                  <span>Activity</span>
-                  <span className="dropdown dropleft d-block">
-                    <span id="dropdownMenuButton1" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      <span><i className="mdi mdi-dots-horizontal"></i></span>
-                    </span>
-                    <span className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <a className="dropdown-item" href="#">Contact</a>
-                      <a className="dropdown-item" href="#">Helpdesk</a>
-                      <a className="dropdown-item" href="#">Chat with us</a>
-                    </span>
-                  </span>
-                </span>
-              </h4>
-              <ul className="gradient-bullet-list border-bottom">
-                <li>
-                  <h6 className="mb-0"> It's awesome when we find a new solution </h6>
-                  <p className="text-muted">2h ago</p>
-                </li>
-                <li>
-                  <h6 className="mb-0">Report has been updated</h6>
-                  <p className="text-muted">
-                    <span>2h ago</span>
-                    <span className="d-inline-block">
-                      <span className="d-flex d-inline-block">
-                        <img className="ml-1" src="/assets/images/faces/face1.jpg" alt="" />
-                        <img className="ml-1" src="/assets/images/faces/face10.jpg" alt="" />
-                        <img className="ml-1" src="/assets/images/faces/face14.jpg" alt="" />
-                      </span>
-                    </span>
-                  </p>
-                </li>
-                <li>
-                  <h6 className="mb-0"> Analytics dashboard has been created#Slack </h6>
-                  <p className="text-muted">2h ago</p>
-                </li>
-                <li>
-                  <h6 className="mb-0"> It's awesome when we find a new solution </h6>
-                  <p className="text-muted">2h ago</p>
-                </li>
-              </ul>
-              <a className="text-black mt-3 mb-0 d-block h6" href="#">View all <i className="mdi mdi-chevron-right"></i></a>
-            </div>
-          </div>
-          {/* <!--activity ends--> */}
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-xl-4 col-md-6 grid-margin stretch-card">
-          <div className="card card-invoice">
-            <div className="card-body">
-              <h4 className="card-title pb-3">Pending invoices</h4>
-              <div className="list-card">
-                <div className="row align-items-center">
-                  <div className="col-7 col-sm-8">
-                    <div className="row align-items-center">
-                      <div className="col-sm-4">
-                        <img src="/assets/images/faces/face2.jpg" alt="" />
-                      </div>
-                      <div className="col-sm-8 pr-0 pl-sm-0">
-                        <span>06 Jan 2019</span>
-                        <h6 className="mb-1 mb-sm-0">Isabel Cross</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-5 col-sm-4">
-                    <div className="d-flex pt-1 align-items-center">
-                      <div className="reload-outer bg-info">
-                        <i className="mdi mdi-reload"></i>
-                      </div>
-                      <div className="dropdown dropleft pl-1 pt-3">
-                        <div id="dropdownMenuButton2" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          <p><i className="mdi mdi-dots-vertical"></i></p>
-                        </div>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                          <a className="dropdown-item" href="#">Sales</a>
-                          <a className="dropdown-item" href="#">Track Invoice</a>
-                          <a className="dropdown-item" href="#">Payment History</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="list-card">
-                <div className="row align-items-center">
-                  <div className="col-7 col-sm-8">
-                    <div className="row align-items-center">
-                      <div className="col-sm-4">
-                        <img src="/assets/images/faces/face3.jpg" alt="" />
-                      </div>
-                      <div className="col-sm-8 pr-0 pl-sm-0">
-                        <span>18 Mar 2019</span>
-                        <h6 className="mb-1 mb-sm-0">Carrie Parker</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-5 col-sm-4">
-                    <div className="d-flex pt-1 align-items-center">
-                      <div className="reload-outer bg-primary">
-                        <i className="mdi mdi-reload"></i>
-                      </div>
-                      <div className="dropdown dropleft pl-1 pt-3">
-                        <div id="dropdownMenuButton3" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          <p><i className="mdi mdi-dots-vertical"></i></p>
-                        </div>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                          <a className="dropdown-item" href="#">Sales</a>
-                          <a className="dropdown-item" href="#">Track Invoice</a>
-                          <a className="dropdown-item" href="#">Payment History</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="list-card">
-                <div className="row align-items-center">
-                  <div className="col-7 col-sm-8">
-                    <div className="row align-items-center">
-                      <div className="col-sm-4">
-                        <img src="/assets/images/faces/face11.jpg" alt="" />
-                      </div>
-                      <div className="col-sm-8 pr-0 pl-sm-0">
-                        <span>10 Apr 2019</span>
-                        <h6 className="mb-1 mb-sm-0">Don Bennett</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-5 col-sm-4">
-                    <div className="d-flex pt-1 align-items-center">
-                      <div className="reload-outer bg-warning">
-                        <i className="mdi mdi-reload"></i>
-                      </div>
-                      <div className="dropdown dropleft pl-1 pt-3">
-                        <div id="dropdownMenuButton4" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          <p><i className="mdi mdi-dots-vertical"></i></p>
-                        </div>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton4">
-                          <a className="dropdown-item" href="#">Sales</a>
-                          <a className="dropdown-item" href="#">Track Invoice</a>
-                          <a className="dropdown-item" href="#">Payment History</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="list-card">
-                <div className="row align-items-center">
-                  <div className="col-7 col-sm-8">
-                    <div className="row align-items-center">
-                      <div className="col-sm-4">
-                        <img src="/assets/images/faces/face3.jpg" alt="" />
-                      </div>
-                      <div className="col-sm-8 pr-0 pl-sm-0">
-                        <span>18 Mar 2019</span>
-                        <h6 className="mb-1 mb-sm-0">Carrie Parker</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-5 col-sm-4">
-                    <div className="d-flex pt-1 align-items-center">
-                      <div className="reload-outer bg-info">
-                        <i className="mdi mdi-reload"></i>
-                      </div>
-                      <div className="dropdown dropleft pl-1 pt-3">
-                        <div id="dropdownMenuButton5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          <p><i className="mdi mdi-dots-vertical"></i></p>
-                        </div>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                          <a className="dropdown-item" href="#">Sales</a>
-                          <a className="dropdown-item" href="#">Track Invoice</a>
-                          <a className="dropdown-item" href="#">Payment History</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-4 col-md-6 grid-margin stretch-card">
-          {/* <!--datepicker--> */}
-          <div className="card">
-            <div className="card-body">
-              <div id="inline-datepicker" className="datepicker table-responsive"></div>
-            </div>
-          </div>
-          {/* <!--datepicker ends--> */}
-        </div>
-        <div className="col-xl-4 col-md-6 stretch-card grid-margin stretch-card">
-          {/* <!--browser stats--> */}
-          <div className="card">
-            <div className="card-body">
-              <h4 className="card-title">Browser stats</h4>
-              <div className="row py-2">
-                <div className="col-sm-12">
-                  <div className="d-flex justify-content-between pb-3 border-bottom">
-                    <div>
-                      <img className="mr-2" src="/assets/images/browser-logo/opera-logo.png" alt="" />
-                      <span className="p">opera mini</span>
-                    </div>
-                    <p className="mb-0">23%</p>
-                  </div>
-                </div>
-              </div>
-              <div className="row py-2">
-                <div className="col-sm-12">
-                  <div className="d-flex justify-content-between pb-3 border-bottom">
-                    <div>
-                      <img className="mr-2" src="/assets/images/browser-logo/safari-logo.png" alt="" />
-                      <span className="p">Safari</span>
-                    </div>
-                    <p className="mb-0">07%</p>
-                  </div>
-                </div>
-              </div>
-              <div className="row py-2">
-                <div className="col-sm-12">
-                  <div className="d-flex justify-content-between pb-3 border-bottom">
-                    <div>
-                      <img className="mr-2" src="/assets/images/browser-logo/chrome-logo.png" alt="" />
-                      <span className="p">Chrome</span>
-                    </div>
-                    <p className="mb-0">33%</p>
-                  </div>
-                </div>
-              </div>
-              <div className="row py-2">
-                <div className="col-sm-12">
-                  <div className="d-flex justify-content-between pb-3 border-bottom">
-                    <div>
-                      <img className="mr-2" src="/assets/images/browser-logo/firefox-logo.png" alt="" />
-                      <span className="p">Firefox</span>
-                    </div>
-                    <p className="mb-0">17%</p>
-                  </div>
-                </div>
-              </div>
-              <div className="row py-2">
-                <div className="col-sm-12">
-                  <div className="d-flex justify-content-between">
-                    <div>
-                      <img className="mr-2" src="/assets/images/browser-logo/explorer-logo.png" alt="" />
-                      <span className="p">Explorer</span>
-                    </div>
-                    <p className="mb-0">05%</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* <!--browser stats ends--> */}
-        </div>
-      </div>
+      </div> */}
+     
     </div>
     <footer className="footer">
       <div className="d-sm-flex justify-content-center justify-content-sm-between">

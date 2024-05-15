@@ -12,7 +12,7 @@ export default function Register() {
   const handleRegister = () => {
     // alert(`${firstname} ${lastname} ${email},${password}`);
     axios
-      .post("http://localhost:9090/register", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/register`, {
         firstname,
         lastname,
         email,

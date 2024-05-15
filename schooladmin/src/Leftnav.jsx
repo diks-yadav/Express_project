@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
+import { imageContext } from "./pages/ImageContext";
+import { UserOutlined } from "@ant-design/icons";
 export default function Leftnav() {
+  const { imageValue, setImageValue } = useContext(imageContext);
   const email = localStorage.getItem("email");
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [idIsTrue, setIdIsTrue] = useState(false);
   const getSpecificUserDetails = () => {
     axios
-      .get(`http://localhost:9090/api/get-usersbyemail/${email}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/get-usersbyemail/${email}`)
       .then((res) => {
         console.log("Backend response Success:", res);
         if (res.data.status == 1) {
@@ -57,7 +60,17 @@ export default function Leftnav() {
           <li className="nav-item nav-profile">
             <a href="#" className="nav-link">
               <div className="nav-profile-image">
-                <img src="/assets/images/faces/face1.jpg" alt="profile" />
+                {imageValue ? (
+                  <img
+                    src={`${process.env.REACT_APP_BACKEND_URL}/profile/${imageValue}`}
+                    width={100}
+                    height={100}
+                    style={{ borderRadius: "50%", margin: "5px" }}
+                  ></img>
+                ) : (
+                  <UserOutlined />
+                )}
+
                 <span className="login-status online"></span>
                 {/* <!--change to offline or busy as needed--> */}
               </div>
@@ -81,60 +94,84 @@ export default function Leftnav() {
           <li className="nav-item">
             {/* <a className="nav-link" href="index.html"> */}
             <i className="mdi mdi-home menu-icon"></i>
-            <Link
+            <NavLink
               to="/dashboard"
-              className="nav-link ml-2 hover:bg-gray-500 p-2 rounded-md"
+              className={({ isActive }) =>
+                isActive
+                  ? "nav-link ml-2 bg-blue-500 p-3 rounded-md active:bg-black"
+                  : "nav-link ml-2 hover:bg-gray-500 p-2 rounded-md active:bg-black"
+              }
             >
               Home
-            </Link>
+            </NavLink>
             {/* </a> */}
           </li>
           <li className="nav-item">
             <i className="mdi mdi-crosshairs-gps menu-icon"></i>
-            <Link
+            <NavLink
               to="/dashboard/student"
-              className="nav-link ml-2 hover:bg-gray-500 p-2 rounded-md"
+              className={({ isActive }) =>
+                isActive
+                  ? "nav-link ml-2 bg-blue-500 p-3 rounded-md active:bg-black"
+                  : "nav-link ml-2 hover:bg-gray-500 p-2 rounded-md active:bg-black"
+              }
             >
               Attendance
-            </Link>
+            </NavLink>
           </li>
           <li className="nav-item">
             {/* <a className="nav-link" href="pages/icons/mdi.html"> */}
             <i className="mdi mdi-contacts menu-icon"></i>
-            <Link
+            <NavLink
               to="/dashboard/student-test"
-              className="nav-link ml-2 hover:bg-gray-500 p-2 rounded-md"
+              className={({ isActive }) =>
+                isActive
+                  ? "nav-link ml-2 bg-blue-500 p-3 rounded-md active:bg-black"
+                  : "nav-link ml-2 hover:bg-gray-500 p-2 rounded-md active:bg-black"
+              }
             >
               Test
-            </Link>
+            </NavLink>
             {/* </a> */}
           </li>
           <li className="nav-item">
             {/* <a className="nav-link" href="pages/forms/basic_elements.html"> */}
             <i className="mdi mdi-format-list-bulleted menu-icon"></i>
-            <Link
+            <NavLink
               to="/dashboard/study-material"
-              className="nav-link ml-2 hover:bg-gray-500 p-2 rounded-md"
+              className={({ isActive }) =>
+                isActive
+                  ? "nav-link ml-2 bg-blue-500 p-3 rounded-md active:bg-black"
+                  : "nav-link ml-2 hover:bg-gray-500 p-2 rounded-md active:bg-black"
+              }
             >
               Study Materials
-            </Link>
+            </NavLink>
             {/* </a> */}
           </li>
           <li className="nav-item">
             <i className="mdi mdi-chart-bar menu-icon"></i>
-            <Link
+            <NavLink
               to="/dashboard/faculty-feedback"
-              className="nav-link ml-2 hover:bg-gray-500 p-2 rounded-md"
+              className={({ isActive }) =>
+                isActive
+                  ? "nav-link ml-2 bg-blue-500 p-3 rounded-md active:bg-black"
+                  : "nav-link ml-2 hover:bg-gray-500 p-2 rounded-md active:bg-black"
+              }
             >
               Faculty Feedback
-            </Link>
+            </NavLink>
           </li>
 
           <li className="nav-item">
             <i className="mdi mdi-file-document-box menu-icon"></i>
             <NavLink
               to="/dashboard/student-documentation"
-              className="nav-link ml-2 hover:bg-gray-500 p-2 rounded-md active:bg-black"
+              className={({ isActive }) =>
+                isActive
+                  ? "nav-link ml-2 bg-blue-500 p-3 rounded-md active:bg-black"
+                  : "nav-link ml-2 hover:bg-gray-500 p-2 rounded-md active:bg-black"
+              }
             >
               Student Documentation
             </NavLink>

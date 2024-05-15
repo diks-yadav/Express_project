@@ -13,6 +13,10 @@
   }
 }
 
+canvas {
+  width: 1000px !important;
+}
+
 
 /* :where(.css-dev-only-do-not-override-1kuana8).ant-form-item .ant-form-item-label >label{
   font-size: 30px!important;

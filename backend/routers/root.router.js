@@ -1,7 +1,17 @@
 const express = require("express");
 const Router = express.Router();
+const fs=require("fs");
 const multer = require("multer");
-const upload = multer();
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage })
 const checkFields = require("../middleware/check-fields");
 const emailSend = require("../helper/email-send");
 const rootController = require("../controllers/root.controller");
@@ -24,6 +34,19 @@ Router.post(
   registerController.registerController
 );
 Router.post("/login", upload.single(), loginController.loginController);
+
+//gwt userprofile
+Router.get("/profile/:name",function(req,res){
+  const image=req.params.name;
+  fs.readFile(`uploads/${image}`, function(err,data){
+    if(err){
+      console.log("error",err);
+    }else{
+      console.log("success",data);
+      res.send(data);
+    }
+  })
+})
 //get-users api
 Router.get("/api/get-users", getUsersController.getUsersControllerfunction);
 
@@ -37,6 +60,8 @@ Router.post("/api/email-send", checkFields, emailSendController.emailSendControl
 
 //user-update by email
 Router.post("/api/user-updatebyEmail/:email",upload.single(),userUpdateController.userUpdateByEmailApi)
+
+Router.post("/api/profileupload/:email",upload.single("image"),userUpdateController.userProfileUpload)
 
 //user-deleta by email
 Router.post("/api/user-deletebyEmail/:email",upload.single(),userDeleteController.userDeleteByEmailApi)

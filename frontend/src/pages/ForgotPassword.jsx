@@ -11,7 +11,7 @@ export default function ForgotPassword() {
   const navigate = useNavigate();
   const handleForgot = () => {
     axios
-      .post("http://localhost:9090/api/forgot-password", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/api/forgot-passwor`, {
         email,
       })
       .then((res) => {
@@ -30,7 +30,7 @@ export default function ForgotPassword() {
   };
   const handleOtpVerify = () => {
     axios
-      .post("http://localhost:9090/api/otp-verify", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/api/otp-verify`, {
         email,
         otp,
       })
@@ -51,7 +51,7 @@ export default function ForgotPassword() {
   };
   const handleReset = () => {
     axios
-      .post("http://localhost:9090/api/reset-password", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/api/reset-password`, {
         email,
         password,
       })

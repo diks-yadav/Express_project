@@ -11,7 +11,7 @@ export default function Login() {
   const handleClick = () => {
     setIsTrue(true);
     axios
-      .post("http://localhost:9090/login", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/login`, {
         email,
         password,
       })
