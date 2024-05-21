@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/School-Admin/static/css/main.02fb5f4b.css",
+    "main.js": "/School-Admin/static/js/main.526d4127.js",
+    "static/js/453.3cdbdfc4.chunk.js": "/School-Admin/static/js/453.3cdbdfc4.chunk.js",
+    "static/media/Group 4.jpg": "/School-Admin/static/media/Group 4.e39193c822c8af7cc7d0.jpg",
+    "static/media/Rubik-Medium.eot": "/School-Admin/static/media/Rubik-Medium.0b9f6361de79d4c845b7.eot",
+    "static/media/Rubik-Medium.ttf": "/School-Admin/static/media/Rubik-Medium.78385e87d67329271c08.ttf",
+    "static/media/Rubik-Bold.eot": "/School-Admin/static/media/Rubik-Bold.0921d305583dedf212d0.eot",
+    "static/media/Rubik-Bold.ttf": "/School-Admin/static/media/Rubik-Bold.ae651fff946515551a1b.ttf",
+    "static/media/Rubik-Regular.eot": "/School-Admin/static/media/Rubik-Regular.ba38bcfd5272bed79f69.eot",
+    "static/media/Rubik-Regular.ttf": "/School-Admin/static/media/Rubik-Regular.6360a19def5c2734417c.ttf",
+    "static/media/Rubik-Light.eot": "/School-Admin/static/media/Rubik-Light.418ec70ca491dc29b6ae.eot",
+    "static/media/Rubik-Light.ttf": "/School-Admin/static/media/Rubik-Light.1cf99519bfaaf55faa25.ttf",
+    "static/media/Rubik-Medium.woff": "/School-Admin/static/media/Rubik-Medium.40e2188d80b3a4e2f898.woff",
+    "static/media/Rubik-Bold.woff": "/School-Admin/static/media/Rubik-Bold.f7e604bd1d0dfc69eb0b.woff",
+    "static/media/Rubik-Regular.woff": "/School-Admin/static/media/Rubik-Regular.4a7c79e5f38942dda590.woff",
+    "static/media/Rubik-Light.woff": "/School-Admin/static/media/Rubik-Light.e344cfad4bc37ff0d336.woff",
+    "static/media/Rubik-Medium.woff2": "/School-Admin/static/media/Rubik-Medium.2b8b377bdb92ff2cc10e.woff2",
+    "static/media/Rubik-Bold.woff2": "/School-Admin/static/media/Rubik-Bold.804735020783c84b52e6.woff2",
+    "static/media/Rubik-Regular.woff2": "/School-Admin/static/media/Rubik-Regular.94151e685e8df7e35d28.woff2",
+    "static/media/Rubik-Light.woff2": "/School-Admin/static/media/Rubik-Light.d8eed30765865a329c7f.woff2",
+    "static/media/logo.svg": "/School-Admin/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/School-Admin/index.html",
+    "main.02fb5f4b.css.map": "/School-Admin/static/css/main.02fb5f4b.css.map",
+    "main.526d4127.js.map": "/School-Admin/static/js/main.526d4127.js.map",
+    "453.3cdbdfc4.chunk.js.map": "/School-Admin/static/js/453.3cdbdfc4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.02fb5f4b.css",
+    "static/js/main.526d4127.js"
+  ]
+}
